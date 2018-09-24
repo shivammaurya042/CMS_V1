@@ -1,0 +1,124 @@
+<br>
+<div class="container">
+  <button type="button" class="btn btn-outline-primary btn-sm hover" (click)="toggle()" style="font-size:18px">
+    <i class="material-icons md-24">add_box</i>
+    &nbsp;Add New Customer
+  </button>
+
+</div>
+<br>
+
+<div *ngIf="toggleValue" class="header" style="background-color: rgb(226, 224, 224);">
+  <!-- <div class="header" style="background-color: rgb(226, 224, 224);"> -->
+  <div class="container">
+    <div class="form-group">
+      <div class="row">
+        <div class="col">
+          <label>FirstName</label>
+          <br>
+          <input type="text" class="form-control" placeholder="First name" [(ngModel)]="myFirstName" required>
+        </div>
+        <div class="col">
+          <label>LastName</label>
+          <br>
+          <input type="text" class="form-control" placeholder="Last name" [(ngModel)]="myLastName">
+        </div>
+        <div class="col">
+          <label>Customer City</label>
+          <br>
+          <input type="text" class="form-control" placeholder="City" [(ngModel)]="myCity">
+        </div>
+        <div class="col">
+          <br>
+          <button class="btn btn-success" (click)="addCustomer()" [disabled]="!(myFirstName && myLastName && myCity)">Add
+            Customer</button>
+        </div>
+      </div>
+    </div>
+
+    <input type="checkbox" (click)="onClickCheckbox()"> <b>&nbsp;Add order details</b>
+    <br>
+    <div class="form-group" *ngIf="toggleValue1">
+      <div class="row">
+        <div class="col">
+          <label>Product</label>
+          <br>
+          <input type="text" class="form-control" placeholder="Product" [(ngModel)]="myProduct">
+        </div>
+        <div class="col">
+          <label>Quantity</label>
+          <br>
+          <input type="text" class="form-control" placeholder="Quantity" [(ngModel)]="myQuantity">
+        </div>
+        <div class="col">
+          <label>Unit Price</label>
+          <br>
+          <input type="text" class="form-control" placeholder="Unit Price" [(ngModel)]="myUnitPrice">
+        </div>
+        <div class="col">
+          <label>Total</label>
+          <br>
+          <input type="text" class="form-control" placeholder="Total" [(ngModel)]="myTotal">
+        </div>
+
+      </div>
+      <button type="button" class="btn btn-link">+Add More</button>
+    </div>
+
+    <hr>
+  </div>
+</div>
+<br>
+<br>
+
+<div class="container">
+  <h4>Registered Customers</h4>
+  <div class="row">
+<div class="col-sm-6 col-md-4" *ngFor="let customer of customersArray; let i = index; ">
+      <!-- <div class="pointerCursor"> -->
+
+      <div class="card shadow p-0 mb-2 bg-white rounded" style="width: 20rem; margin: 20px">
+        <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true" class="float-right" (click)="onClose(customer.id)">&times;</span>
+        </button>
+
+        <img class="card-img-top" src="../assets/images/user2.png" alt="Customer Image" style="padding: 20px">
+        <div class="card-body">
+          <h5 class="card-title">{{ customer.id}}. {{ customer.firstName}} {{ customer.lastName}}</h5>
+          <p class="card-text">{{ customer.address }}
+            <br> {{ customer.city }}</p>
+          <!-- <button (click)="onClick(customer.id)" class="btn btn-primary">View {{ customer.orders.length }} orders</button> -->
+          <div class="container">
+            <div class="row justify-content-center">
+              <button type="button" class="btn btn-outline-primary" (click)="onClick(i)">Click to view
+                {{ customer.orders.length }} orders</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+    </div>
+  </div>
+</div>
+
+<!-- 
+<div class="container">
+  <h4>Registered Customers</h4>
+  <div class="row">
+    <div class="col-sm-6 col-md-4" *ngFor="let customer of customersArray">
+      <div class="pointerCursor">
+        <div class="thumbnail" (click)="onClick(customer.id)">
+          <img src="../assets/images/user2.png" alt="Customer Image" style="width:200px;height:200px;">
+          <div class="caption ">
+            <h3>{{ customer.id}}. {{ customer.firstName}} {{ customer.lastName}}</h3>
+            <p>{{ customer.address }}
+              <br> {{ customer.city }}</p>
+            <p>
+              <a class="btn btn-primary " role="button">View {{ customer.orders.length }} orders</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

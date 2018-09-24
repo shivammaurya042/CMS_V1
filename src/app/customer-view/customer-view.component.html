@@ -1,0 +1,29 @@
+<div class="container">
+  <br>
+  <!-- Default panel contents -->
+  <div class="panel-heading">
+    <h3>{{ customer.firstName }} {{ customer.lastName }}</h3>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Product</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Unit Price</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of customer.orders; let i = index">
+
+        <td>{{i+1}}</td>
+        <td>{{order.product}}</td>
+        <td>{{order.quantity}}</td>
+        <td>{{order.price | currency: "INR"}}</td>
+        <td>{{order.orderTotal | currency: "INR"}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
